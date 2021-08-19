@@ -7,15 +7,17 @@
     "@testing-library/react": "^10.4.9",
     "@testing-library/react-hooks": "^7.0.1",
     "@testing-library/user-event": "^12.1.3",
-    "jest-environment-jsdom-sixteen": "^2.0.0",
     "axios": "^0.21.1",
     "dotenv": "^8.2.0",
     "enzyme": "^3.11.0",
+    "history": "^4.10.1",
+    "jest-environment-jsdom-sixteen": "^2.0.0",
+    "prop-types": "^15.7.2",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "3.4.3",
+    "react-scripts": "^4.0.3",
     "styled-components": "^5.3.0"
   },
   "scripts": {
@@ -28,7 +30,7 @@
     "lint:fix": "eslint ./src --ext .js,.jsx --fix"
   },
   "devDependencies": {
-    "eslint": "^6.8.0",
+    "eslint": "^7.32.0",
     "eslint-config-airbnb": "^18.2.0",
     "eslint-config-google": "^0.14.0",
     "eslint-config-prettier": "^6.11.0",
@@ -64,24 +66,14 @@
     ]
   },
   "husky": {
-    "hooks": {}
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
   },
   "jest": {
     "coveragePathIgnorePatterns": [
       "/node_modules/",
-      "/src/img/",
-      "/src/mocks",
-      "/src/providers",
-      "/src/config",
-      "/src/helpers/",
-      "/src/utils/",
-      "/src/index.js",
-      "/src/components/Fortune",
-      "/src/components/Private",
-      "/pages/Login",
-      "/pages/Secret",
-      "/pages/NotFound",
-      "/components/App/"
+      "/src/img/"
     ]
   }
 }

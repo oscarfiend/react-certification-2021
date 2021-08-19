@@ -10,7 +10,7 @@ const VideoRelated = () => {
 
   const themeContext = useContext(ThemeContext);
   const { theme } = themeContext;
-  let history = useHistory();
+  const history = useHistory();
 
   const handleClick = (video) => {
     selectVideo({
@@ -22,14 +22,21 @@ const VideoRelated = () => {
   };
 
   return (
-    <RelatedContainer> 
-      {data && data.items &&
-        data.items.map((video) => (
-          <CardRelated theme={theme} key={video.etag} onClick={() => handleClick(video)}>
-            <ImageRelated src={video.snippet?.thumbnails?.medium?.url} />
-            <span>{video.snippet?.title}</span>
-          </CardRelated>
-        ))}
+    <RelatedContainer>
+      {data &&
+        data.items &&
+        data.items.map((video) =>
+          video.snippet ? (
+            <CardRelated
+              theme={theme}
+              key={video.etag}
+              onClick={() => handleClick(video)}
+            >
+              <ImageRelated src={video.snippet.thumbnails.medium.url} />
+              <span>{video.snippet.title}</span>
+            </CardRelated>
+          ) : null
+        )}
     </RelatedContainer>
   );
 };

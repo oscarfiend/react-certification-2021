@@ -15,14 +15,14 @@ export const ImageRelated = styled.img`
 export const CardRelated = styled.div`
   display: flex;
   flex-direction: row;
-  margin: 10px 20px ;
+  margin: 10px 20px;
   padding: 10px;
   font-size: 14px;
   max-height: 100%;
   overflow-y: hidden;
   cursor: pointer;
 
-  &:hover{
-    background-color: ${props=>props.theme.backgroundCardRelated};
+  &:hover {
+    background-color: ${(props) => props.theme.backgroundCardRelated};
   }
 `;

@@ -1,9 +1,15 @@
 import React, { useCallback, useEffect, useReducer } from 'react';
-import useVideoApi from '../../hooks/useVideoApi';
 import PropTypes from 'prop-types';
+import useVideoApi from '../../hooks/useVideoApi';
 import VideoContext from './videoContext';
 import VideoReducer from './videoReducer';
-import { UPDATE_VIDEOS, UPDATE_LOADING, UPDATE_ERROR, SELECT_VIDEO, UPDATE_QUERY_VIDEO } from '../../utils/constants';
+import {
+  UPDATE_VIDEOS,
+  UPDATE_LOADING,
+  UPDATE_ERROR,
+  SELECT_VIDEO,
+  UPDATE_QUERY_VIDEO,
+} from '../../utils/constants';
 
 const VideoState = ({ children }) => {
   const { data, loading, error, fetchVideos } = useVideoApi();
@@ -13,30 +19,41 @@ const VideoState = ({ children }) => {
     loading: false,
     error: null,
     data: [],
-    videoSelected: null
+    videoSelected: null,
   };
 
   const [state, dispatch] = useReducer(VideoReducer, initialState);
 
-  const getVideos = useCallback(
-    () => {
-      const params = { q: state.queryVideo };
-      fetchVideos({ params });
-    },
-    [state.queryVideo,fetchVideos],
-  )
+  const getVideos = useCallback(() => {
+    const params = { q: state.queryVideo };
+    fetchVideos({ params });
+  }, [state.queryVideo, fetchVideos]);
+
+  const updateLoading = (newLoading) => {
+    dispatch({
+      type: UPDATE_LOADING,
+      payload: newLoading,
+    });
+  };
+
+  const updateError = (newError) => {
+    dispatch({
+      type: UPDATE_ERROR,
+      payload: newError,
+    });
+  };
 
   useEffect(() => {
     getVideos();
-  }, [state.queryVideo,getVideos]);
+  }, [state.queryVideo, getVideos]);
 
   useEffect(() => {
     const updateListVideos = () => {
-    dispatch({
-      type: UPDATE_VIDEOS,
-      payload: data,
-    });
-  };
+      dispatch({
+        type: UPDATE_VIDEOS,
+        payload: data,
+      });
+    };
     if (state.loading !== loading) {
       updateLoading(loading);
     }
@@ -46,45 +63,29 @@ const VideoState = ({ children }) => {
     if (data !== state.data) {
       updateListVideos();
     }
-  }, [error, loading, data,state.data,state.error,state.loading]);
+  }, [error, loading, data, state.data, state.error, state.loading]);
 
-
-  const updateLoading = (loading) => {
-    dispatch({
-      type: UPDATE_LOADING,
-      payload: loading,
-    });
-  };
-
-  const updateError = (error) => {
-    dispatch({
-      type: UPDATE_ERROR,
-      payload: error,
-    });
-  };
-
-  const getVideoDetails=useCallback(
+  const getVideoDetails = useCallback(
     (videoID) => {
       const params = { relatedToVideoId: videoID, type: 'video' };
       fetchVideos({ params });
     },
-    [fetchVideos],
-  )
+    [fetchVideos]
+  );
 
   const selectVideo = (videoDetails) => {
     dispatch({
-        type:SELECT_VIDEO,
-        payload:videoDetails
-    })
+      type: SELECT_VIDEO,
+      payload: videoDetails,
+    });
   };
 
   const setQueryVideo = (query) => {
-      dispatch({
-          type:UPDATE_QUERY_VIDEO,
-          payload:query
-      })
+    dispatch({
+      type: UPDATE_QUERY_VIDEO,
+      payload: query,
+    });
   };
-
 
   return (
     <VideoContext.Provider
@@ -96,7 +97,7 @@ const VideoState = ({ children }) => {
         getVideos,
         getVideoDetails,
         selectVideo,
-        setQueryVideo
+        setQueryVideo,
       }}
     >
       {children}

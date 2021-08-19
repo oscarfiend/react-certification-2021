@@ -2,7 +2,7 @@ import styled from 'styled-components';
 
 export const Card = styled.div`
   margin: 30px 15px;
-  background-color: ${props=>props.theme.cardBackground};
+  background-color: ${(props) => props.theme.cardBackground};
   border-radius: 10px;
   box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
   overflow: hidden;
@@ -11,28 +11,27 @@ export const Card = styled.div`
   cursor: pointer;
   box-sizing: border-box;
 
-    &:hover {
-      transform: scale(1.03);
-      box-shadow: ${props=>props.theme.cardShadow};
-      &>img:first-child{
-        display: inline;
-      }
+  &:hover {
+    transform: scale(1.03);
+    box-shadow: ${(props) => props.theme.cardShadow};
+    & > img:first-child {
+      display: inline;
     }
+  }
 
-    &>img:first-child{
-      display: none;
-      position: absolute;
-      top: 15%;
-      left: calc(50% - 25px);
-      width: 50px;
-      height: 50px;
-      z-index:900;
-    }
+  & > img:first-child {
+    display: none;
+    position: absolute;
+    top: 15%;
+    left: calc(50% - 25px);
+    width: 50px;
+    height: 50px;
+    z-index: 900;
+  }
 
-    @media (max-width: 380px) {
-      width: 95%;
-    }
-    
+  @media (max-width: 380px) {
+    width: 95%;
+  }
 `;
 
 export const CardTitle = styled.h4`
@@ -58,7 +57,7 @@ export const CardBody = styled.div`
     max-height: 60px;
     overflow: hidden;
     font-size: 14px;
-    color: ${props=>props.theme.descriptionColor};
+    color: ${(props) => props.theme.descriptionColor};
     text-align: left;
   }
 `;
@@ -75,7 +74,6 @@ export const VideoDate = styled.div`
 
   & > small {
     font-size: 12px;
-    color: ${props=>props.theme.descriptionColor};
+    color: ${(props) => props.theme.descriptionColor};
   }
 `;
-

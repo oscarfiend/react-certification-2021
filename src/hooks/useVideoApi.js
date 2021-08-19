@@ -7,27 +7,24 @@ const useVideoApi = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
 
-  const fetchVideos=useCallback(
-    async (data) => {
+  const fetchVideos = useCallback(async (newData) => {
     setLoading(true);
     const key = process.env.REACT_APP_APY_KEY;
     try {
       const queryParams = buildQueryParams({
-        ...data.params,
+        ...newData.params,
         key,
         part: 'snippet',
         maxResults: 24,
       });
       const res = await axiosClient(`search?${queryParams}`);
       setData(res.data);
-    } catch (error) {
-      setError(error);
+    } catch (er) {
+      setError(er);
     } finally {
       setLoading(false);
     }
-    },
-    [],
-  )
+  }, []);
 
   return {
     data,

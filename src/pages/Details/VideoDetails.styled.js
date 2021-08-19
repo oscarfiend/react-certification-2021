@@ -11,4 +11,3 @@ export const MainContainer = styled.div`
     max-height: 150vh;
   }
 `;
-

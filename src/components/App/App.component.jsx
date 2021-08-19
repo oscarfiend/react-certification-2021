@@ -13,20 +13,20 @@ function App() {
   const { theme } = themeContext;
   return (
     <BrowserRouter>
-        <GlobalStyle theme={theme}/>
-        <Layout>
-          <Switch>
-            <Route exact path="/">
-              <HomePage />
-            </Route>
-            <Route exact path="/video/:id">
-              <VideoDetails />
-            </Route>
-            <Route path="*">
-              <NotFound />
-            </Route>
-          </Switch>
-        </Layout>
+      <GlobalStyle theme={theme} />
+      <Layout>
+        <Switch>
+          <Route exact path="/">
+            <HomePage />
+          </Route>
+          <Route exact path="/video/:id">
+            <VideoDetails />
+          </Route>
+          <Route path="*">
+            <NotFound />
+          </Route>
+        </Switch>
+      </Layout>
     </BrowserRouter>
   );
 }

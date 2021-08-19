@@ -22,7 +22,6 @@ const VideoDetail = () => {
         <>
           <FrameContainer>
             <VideoFrame
-              role="iframe"
               width="560"
               height="349"
               allowFullScreen

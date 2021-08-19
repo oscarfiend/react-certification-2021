@@ -1,13 +1,13 @@
 import React, { useState, useContext } from 'react';
 import { useHistory } from 'react-router';
-import  VideoContext  from '../../../context/video/videoContext';
+import VideoContext from '../../../context/video/videoContext';
 import { Form, Search } from './SearchForm.styled';
 
 const SearchForm = () => {
   const [query, setQuery] = useState('');
   const videoContext = useContext(VideoContext);
   const { setQueryVideo } = videoContext;
-  let history = useHistory();
+  const history = useHistory();
 
   const handleSubmit = (e) => {
     e.preventDefault();

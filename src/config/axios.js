@@ -1,7 +1,7 @@
-import axios from 'axios'
+import axios from 'axios';
 
-const axiosClient=axios.create({
-    baseURL:"https://content-youtube.googleapis.com/youtube/v3/"
-})
+const axiosClient = axios.create({
+  baseURL: 'https://content-youtube.googleapis.com/youtube/v3/',
+});
 
-export default axiosClient
+export default axiosClient;

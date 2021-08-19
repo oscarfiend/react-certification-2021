@@ -1,4 +1,10 @@
-import { UPDATE_VIDEOS, UPDATE_LOADING, UPDATE_ERROR, SELECT_VIDEO, UPDATE_QUERY_VIDEO } from '../../utils/constants';
+import {
+  UPDATE_VIDEOS,
+  UPDATE_LOADING,
+  UPDATE_ERROR,
+  SELECT_VIDEO,
+  UPDATE_QUERY_VIDEO,
+} from '../../utils/constants';
 
 export default (state = {}, { type, payload }) => {
   switch (type) {
@@ -9,9 +15,9 @@ export default (state = {}, { type, payload }) => {
     case UPDATE_ERROR:
       return { ...state, error: payload };
     case SELECT_VIDEO:
-        return{...state, videoSelected:payload}
+      return { ...state, videoSelected: payload };
     case UPDATE_QUERY_VIDEO:
-        return{...state,queryVideo:payload}
+      return { ...state, queryVideo: payload };
     default:
       return state;
   }

@@ -6,6 +6,7 @@ import { CHANGE_MODE } from '../../utils/constants';
 
 const theme = {
   light: {
+    mode: 'light',
     backgroundColor: '#f9f9f9',
     bodyGlobalColor: 'black',
     titleHomeColor: 'black',
@@ -18,6 +19,7 @@ const theme = {
     backgroundCardRelated: '#dbd9d9',
   },
   dark: {
+    mode: 'dark',
     backgroundColor: '#303030',
     bodyGlobalColor: 'white',
     titleHomeColor: 'white',

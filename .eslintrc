@@ -1,9 +1,10 @@
 {
-  "extends": ["react-app", "airbnb", "prettier", "prettier/react"],
-  "plugins": ["prettier"],
+  "extends": ["airbnb", "prettier", "prettier/react"],
+  "plugins": ["prettier","react-hooks"],
   "rules": {
     "prettier/prettier": "error",
     "react/jsx-filename-extension": "error",
+    "import/no-named-as-default-member": 0,
     "react-hooks/exhaustive-deps": "warn",
     "import/no-unresolved": ["off", { "ignore": [".css$"] }],
     "import/prefer-default-export": "off",
@@ -13,5 +14,22 @@
     "array-callback-return": "off",
     "consistent-return": "off",
     "no-console": "off"
-  }
+  },
+  "globals": {
+    "document": true,
+    "foo": true,
+    "fetch": true,
+    "window": true
+  },
+  "overrides": [
+    {
+      "files": [
+        "**/*.test.js",
+        "**/*.test.jsx"
+      ],
+      "env": {
+        "jest": true
+      }
+    }
+  ]
 }

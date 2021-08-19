@@ -7,7 +7,7 @@ import Spinner from '../Spinner';
 const VideoList = () => {
   const videoContext = useContext(VideoContext);
   const { data, loading, error } = videoContext;
-  const videos = data?.items;
+  const videos = data ? data.items : [];
 
   if (error) {
     return <h2>Error fetching data, try later</h2>;
@@ -22,11 +22,11 @@ const VideoList = () => {
         videos.map((video) => (
           <div data-testid="list_videos" key={video.etag}>
             <VideoCard
-              image={video.snippet?.thumbnails?.medium.url}
-              title={video.snippet?.title}
-              description={video.snippet?.description}
-              createdAt={video.snippet?.publishedAt}
-              videoId={video.id.videoId}
+              image={video.snippet.thumbnails.medium.url}
+              title={video.snippet.title}
+              description={video.snippet.description}
+              createdAt={video.snippet.publishedAt}
+              videoId={video.id.videoId || video.etag}
             />
           </div>
         ))
