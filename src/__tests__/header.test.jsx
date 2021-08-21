@@ -1,18 +1,30 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+import { act } from '@testing-library/react-hooks';
 import ThemeState from '../context/theme/themeState';
 import VideoState from '../context/video/VideoState';
 import Header from '../components/Header';
 
+import videosMock from '../mocks/youtube-videos-mock.json';
+import axiosClient from '../config/axios';
+
+jest.mock('../config/axios');
 describe('Header component tests', () => {
-  beforeEach(() => {
-    render(
-      <VideoState>
-        <ThemeState>
-          <Header />
-        </ThemeState>
-      </VideoState>
+  beforeEach(async () => {
+    axiosClient.mockReturnValue(
+      Promise.resolve({
+        data: { ...videosMock },
+      })
     );
+    await act(async () => {
+      render(
+        <VideoState>
+          <ThemeState>
+            <Header />
+          </ThemeState>
+        </VideoState>
+      );
+    });
   });
 
   test('should containt a toggle button', () => {

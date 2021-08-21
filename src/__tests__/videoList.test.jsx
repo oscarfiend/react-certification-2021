@@ -1,5 +1,6 @@
 import { render, screen } from '@testing-library/react';
 import React from 'react';
+import { act } from '@testing-library/react-hooks';
 import axios from '../config/axios';
 import VideoList from '../components/VideoList';
 import ThemeState from '../context/theme/themeState';
@@ -9,19 +10,21 @@ import videosMock from '../mocks/youtube-videos-mock.json';
 
 jest.mock('../config/axios');
 describe('VideoList component tests', () => {
-  beforeEach(() => {
+  beforeEach(async () => {
     axios.mockReturnValue(
       Promise.resolve({
         data: { ...videosMock },
       })
     );
-    render(
-      <VideoState>
-        <ThemeState>
-          <VideoList />
-        </ThemeState>
-      </VideoState>
-    );
+    await act(async () => {
+      render(
+        <VideoState>
+          <ThemeState>
+            <VideoList />
+          </ThemeState>
+        </VideoState>
+      );
+    });
   });
 
   test('should containt a list container', () => {
