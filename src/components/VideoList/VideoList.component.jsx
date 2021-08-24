@@ -19,17 +19,19 @@ const VideoList = () => {
         <Spinner />
       ) : (
         Array.isArray(videos) &&
-        videos.map((video) => (
-          <div data-testid="list_videos" key={video.etag}>
-            <VideoCard
-              image={video.snippet.thumbnails.medium.url}
-              title={video.snippet.title}
-              description={video.snippet.description}
-              createdAt={video.snippet.publishedAt}
-              videoId={video.id.videoId || video.etag}
-            />
-          </div>
-        ))
+        videos.map((video) =>
+          video.snippet ? (
+            <div data-testid="list_videos" key={video.etag}>
+              <VideoCard
+                image={video.snippet.thumbnails.medium.url}
+                title={video.snippet.title}
+                description={video.snippet.description}
+                createdAt={video.snippet.publishedAt}
+                videoId={video.id.videoId || video.etag}
+              />
+            </div>
+          ) : null
+        )
       )}
     </ContainerList>
   );

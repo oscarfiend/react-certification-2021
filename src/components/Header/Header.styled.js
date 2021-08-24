@@ -30,38 +30,6 @@ export const HeaderItemRigth = styled(HeaderItem)`
   }
 `;
 
-export const MenuButton = styled.input`
-  display: block;
-  width: 40px;
-  height: 32px;
-  position: absolute;
-  cursor: pointer;
-  top: 7px;
-  left: 15px;
-  opacity: 0; /* hide this */
-  z-index: 2; /* and place it over the hamburger */
-  -webkit-touch-callout: none;
-`;
-
-export const SpanHamburguer = styled.span`
-  display: block;
-  width: 25px;
-  height: 2.5px;
-  margin-bottom: 4px;
-  position: relative;
-  background: #ffffff;
-  border-radius: 3px;
-  z-index: 1;
-  transform-origin: 4px 0px;
-  transition: transform 0.5s cubic-bezier(0.77, 0.2, 0.05, 1),
-    background 0.5s cubic-bezier(0.77, 0.2, 0.05, 1), opacity 0.55s ease;
-`;
-
-export const ContainerHamburguer = styled.div`
-  display: 'flex';
-  flex-direction: 'column';
-`;
-
 export const Toggle = styled.input`
   display: none;
 
@@ -131,4 +99,39 @@ export const Avatar = styled.img`
   border-radius: 50%;
   margin-left: 20px;
   cursor: pointer;
+`;
+
+export const DropdownContent = styled.div`
+  display: none;
+  position: absolute;
+  left: -50px;
+  top: 0px;
+  background-color: #f9f9f9;
+  color: black;
+  min-width: 100px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  padding: 0 !important;
+  z-index: 1;
+  transition: opacity 207ms cubic-bezier(0.4, 0, 0.2, 1) 0ms,
+    transform 138ms cubic-bezier(0.4, 0, 0.2, 1) 0ms;
+  border-radius: 4px;
+`;
+
+export const Dropdown = styled.div`
+  position: relative;
+  display: inline-block;
+
+  &:hover ${DropdownContent} {
+    display: block;
+  }
+`;
+
+export const DropdownOption = styled.p`
+  margin: 8px 0px;
+  text-align: center;
+  cursor: pointer;
+  width: 100%;
+  &:hover {
+    background-color: #efefef;
+  }
 `;
