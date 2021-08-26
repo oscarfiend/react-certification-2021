@@ -9,7 +9,11 @@ import {
   UPDATE_ERROR,
   SELECT_VIDEO,
   UPDATE_QUERY_VIDEO,
+  ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES,
+  REACT_CHALLENGE_FAVORITES,
 } from '../../utils/constants';
+import { storage } from '../../utils/storage';
 
 const VideoState = ({ children }) => {
   const { data, loading, error, fetchVideos } = useVideoApi();
@@ -20,6 +24,7 @@ const VideoState = ({ children }) => {
     error: null,
     data: [],
     videoSelected: null,
+    favoriteVideos: storage.get(REACT_CHALLENGE_FAVORITES) || [],
   };
 
   const [state, dispatch] = useReducer(VideoReducer, initialState);
@@ -42,6 +47,10 @@ const VideoState = ({ children }) => {
       payload: newError,
     });
   };
+
+  useEffect(() => {
+    storage.set(REACT_CHALLENGE_FAVORITES, state.favoriteVideos);
+  }, [state.favoriteVideos]);
 
   useEffect(() => {
     getVideos();
@@ -87,6 +96,20 @@ const VideoState = ({ children }) => {
     });
   };
 
+  const addToFavorites = (video) => {
+    dispatch({
+      type: ADD_TO_FAVORITES,
+      payload: video,
+    });
+  };
+
+  const removeFromFavorites = (id) => {
+    dispatch({
+      type: REMOVE_FROM_FAVORITES,
+      payload: id,
+    });
+  };
+
   return (
     <VideoContext.Provider
       value={{
@@ -94,10 +117,13 @@ const VideoState = ({ children }) => {
         error: state.error,
         loading: state.loading,
         videoSelected: state.videoSelected,
+        favoriteVideos: state.favoriteVideos,
         getVideos,
         getVideoDetails,
         selectVideo,
         setQueryVideo,
+        addToFavorites,
+        removeFromFavorites,
       }}
     >
       {children}

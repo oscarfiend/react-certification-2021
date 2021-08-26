@@ -17,6 +17,7 @@ const GlobalStyle = createGlobalStyle`
 
 a:hover {
   background-color: #e93d44;
+  color: black;
 }
 `;
 

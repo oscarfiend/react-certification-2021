@@ -7,6 +7,9 @@ import Layout from '../Layout';
 import VideoDetails from '../../pages/Details';
 import GlobalStyle from '../../utils/globalStyles.styled';
 import ThemeContext from '../../context/theme/themeContext';
+import Favorites from '../../pages/Favorites';
+import Private from '../Private';
+import FavoriteDetail from '../../pages/DetailsFavoriteVideos';
 
 function App() {
   const themeContext = useContext(ThemeContext);
@@ -19,6 +22,12 @@ function App() {
           <Route exact path="/">
             <HomePage />
           </Route>
+          <Private exact path="/favorites">
+            <Favorites />
+          </Private>
+          <Private exact path="/favorites/:id">
+            <FavoriteDetail />
+          </Private>
           <Route exact path="/video/:id">
             <VideoDetails />
           </Route>

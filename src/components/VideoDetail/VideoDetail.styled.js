@@ -37,3 +37,20 @@ export const DescriptionDetails = styled.div`
   text-overflow: ellipsis;
   font-size: 16px;
 `;
+
+export const AddFavoriteButton = styled.button`
+  padding: 12px 30px;
+  background-color: #e3e3e3;
+  border: none;
+  font-size: 1rem;
+  cursor: pointer;
+  position: absolute;
+  border-radius: 5px;
+  bottom: 15px;
+  right: 0;
+  transition: color 0.3s ease-out, background-color 0.3s ease-out;
+
+  &:hover {
+    background-color: #cccccc;
+  }
+`;

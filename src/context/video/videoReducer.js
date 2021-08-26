@@ -4,6 +4,8 @@ import {
   UPDATE_ERROR,
   SELECT_VIDEO,
   UPDATE_QUERY_VIDEO,
+  ADD_TO_FAVORITES,
+  REMOVE_FROM_FAVORITES,
 } from '../../utils/constants';
 
 export default (state = {}, { type, payload }) => {
@@ -18,6 +20,15 @@ export default (state = {}, { type, payload }) => {
       return { ...state, videoSelected: payload };
     case UPDATE_QUERY_VIDEO:
       return { ...state, queryVideo: payload };
+    case ADD_TO_FAVORITES:
+      return { ...state, favoriteVideos: [...state.favoriteVideos, payload] };
+    case REMOVE_FROM_FAVORITES:
+      return {
+        ...state,
+        favoriteVideos: state.favoriteVideos.filter(
+          (video) => video.id.videoId !== payload
+        ),
+      };
     default:
       return state;
   }

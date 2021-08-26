@@ -11,15 +11,20 @@ import {
   Toggle,
 } from './Header.styled';
 import avatar from '../../img/avatar.png';
+import avatarLogin from '../../img/avatar_login.png';
 import SearchForm from './Search';
 import ThemeContext from '../../context/theme/themeContext';
 import SideMenu from './Menu';
 import LoginPage from '../../pages/Login';
+import AuthContext from '../../context/auth/authContext';
 
 const Header = () => {
   const [showLogin, setShowLogin] = useState(false);
   const themeContext = useContext(ThemeContext);
   const { theme, changeTheme } = themeContext;
+
+  const authContext = useContext(AuthContext);
+  const { signout, autenticated, user } = authContext;
 
   return (
     <>
@@ -44,10 +49,19 @@ const Header = () => {
 
           {/* component to login */}
           <Dropdown>
-            <Avatar src={avatar} alt="Avatar" data-testid="avatar_login" />
+            <Avatar
+              src={user ? avatarLogin : avatar}
+              alt="Avatar"
+              data-testid="avatar_login"
+            />
             <DropdownContent>
-              <DropdownOption onClick={() => setShowLogin(true)}>Login</DropdownOption>
-              <DropdownOption>Logout</DropdownOption>
+              {autenticated ? (
+                <DropdownOption ownOption onClick={signout}>
+                  Logout
+                </DropdownOption>
+              ) : (
+                <DropdownOption onClick={() => setShowLogin(true)}>Login</DropdownOption>
+              )}
             </DropdownContent>
           </Dropdown>
         </HeaderItemRigth>

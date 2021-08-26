@@ -1,8 +1,10 @@
 import { fireEvent, render, screen } from '@testing-library/react';
 import React from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import { act } from '@testing-library/react-hooks';
 import ThemeState from '../context/theme/themeState';
 import VideoState from '../context/video/VideoState';
+import Authstate from '../context/auth/authState';
 import Header from '../components/Header';
 
 import videosMock from '../mocks/youtube-videos-mock.json';
@@ -20,7 +22,11 @@ describe('Header component tests', () => {
       render(
         <VideoState>
           <ThemeState>
-            <Header />
+            <Authstate>
+              <BrowserRouter>
+                <Header />
+              </BrowserRouter>
+            </Authstate>
           </ThemeState>
         </VideoState>
       );

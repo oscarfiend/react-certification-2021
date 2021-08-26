@@ -1,5 +1,14 @@
 import styled from 'styled-components';
 
+export const Button = styled.img`
+  max-width: 20px;
+  height: auto;
+  cursor: pointer;
+  &:hover {
+    transform: scale(1.3);
+  }
+`;
+
 export const Card = styled.div`
   margin: 30px 15px;
   background-color: ${(props) => props.theme.cardBackground};
@@ -8,14 +17,21 @@ export const Card = styled.div`
   overflow: hidden;
   width: 340px;
   height: 420px;
-  cursor: pointer;
   box-sizing: border-box;
 
   &:hover {
     transform: scale(1.03);
     box-shadow: ${(props) => props.theme.cardShadow};
+
     & > img:first-child {
       display: inline;
+      cursor: pointer;
+      border-radius: 50%;
+
+      &:hover {
+        transform: scale(1.05);
+        box-shadow: 0 2px 20px rgba(0, 0, 0, 0.2);
+      }
     }
   }
 
@@ -63,7 +79,9 @@ export const CardBody = styled.div`
 `;
 
 export const VideoFooter = styled.div`
+  width: 100%;
   display: flex;
+  justify-content: space-between;
   margin-top: auto;
 `;
 

@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './components/App/App.component';
+import AuthState from './context/auth/authState';
 import ThemeState from './context/theme/themeState';
 import VideoState from './context/video/videoState';
 
@@ -10,7 +11,9 @@ ReactDOM.render(
   <React.StrictMode>
     <VideoState>
       <ThemeState>
-        <App />
+        <AuthState>
+          <App />
+        </AuthState>
       </ThemeState>
     </VideoState>
   </React.StrictMode>,

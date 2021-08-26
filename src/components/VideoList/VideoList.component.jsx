@@ -1,14 +1,10 @@
-import React, { useContext } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 import VideoCard from '../VideoCard';
 import { ContainerList } from './VideoList.styled';
-import VideoContext from '../../context/video/videoContext';
 import Spinner from '../Spinner';
 
-const VideoList = () => {
-  const videoContext = useContext(VideoContext);
-  const { data, loading, error } = videoContext;
-  const videos = data ? data.items : [];
-
+const VideoList = ({ videos, loading = false, error = null }) => {
   if (error) {
     return <h2>Error fetching data, try later</h2>;
   }
@@ -25,6 +21,7 @@ const VideoList = () => {
               <VideoCard
                 image={video.snippet.thumbnails.medium.url}
                 title={video.snippet.title}
+                video={video}
                 description={video.snippet.description}
                 createdAt={video.snippet.publishedAt}
                 videoId={video.id.videoId || video.etag}
@@ -35,6 +32,10 @@ const VideoList = () => {
       )}
     </ContainerList>
   );
+};
+
+VideoList.propTypes = {
+  videos: PropTypes.arrayOf(PropTypes.object).isRequired,
 };
 
 export default VideoList;

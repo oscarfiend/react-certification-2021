@@ -7,7 +7,7 @@ import { MainContainer } from './VideoDetails.styled';
 
 const VideoDetails = () => {
   const videoContext = useContext(VideoContext);
-  const { getVideoDetails } = videoContext;
+  const { getVideoDetails, data } = videoContext;
 
   const { id } = useParams();
 
@@ -18,7 +18,7 @@ const VideoDetails = () => {
   return (
     <MainContainer data-testid="container-details">
       <VideoDetail />
-      <VideoRelated />
+      <VideoRelated data={data} />
     </MainContainer>
   );
 };

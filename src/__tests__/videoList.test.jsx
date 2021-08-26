@@ -1,4 +1,4 @@
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { act } from '@testing-library/react-hooks';
 import axios from '../config/axios';
@@ -40,6 +40,6 @@ describe('VideoList component tests', () => {
 
   test('should containt a card video list', async () => {
     const list = screen.findAllByTestId(/list_videos/i);
-    expect((await list).length).toBe(videosMock.items.length);
+    waitFor(() => expect(list.length).toBe(videosMock.items.length));
   });
 });

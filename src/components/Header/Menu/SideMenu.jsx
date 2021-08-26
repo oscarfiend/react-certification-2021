@@ -1,5 +1,6 @@
-import React, { useRef } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Link } from 'react-router-dom';
+import AuthContext from '../../../context/auth/authContext';
 import {
   HamburgerMenu,
   Menu,
@@ -9,6 +10,8 @@ import {
 } from './Menu.styled';
 
 const SideMenu = () => {
+  const authContext = useContext(AuthContext);
+  const { autenticated } = authContext;
   const ref = useRef(null);
 
   const hidenMenu = () => {
@@ -27,9 +30,11 @@ const SideMenu = () => {
         <Link to="/" onClick={hidenMenu}>
           <li>Home</li>
         </Link>
-        <Link to="/" onClick={hidenMenu}>
-          <li>Home</li>
-        </Link>
+        {autenticated && (
+          <Link to="/favorites" onClick={hidenMenu}>
+            <li>Favorites</li>
+          </Link>
+        )}
       </Menu>
     </HamburgerMenu>
   );

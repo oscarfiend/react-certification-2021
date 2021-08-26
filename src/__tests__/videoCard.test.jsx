@@ -4,7 +4,7 @@ import { act } from '@testing-library/react-hooks';
 import VideoCard from '../components/VideoCard';
 import ThemeState from '../context/theme/themeState';
 import VideoState from '../context/video/videoState';
-
+import Authstate from '../context/auth/authState';
 import videosMock from '../mocks/youtube-videos-mock.json';
 import axiosClient from '../config/axios';
 
@@ -27,12 +27,14 @@ describe('VideoCard component tests', () => {
       render(
         <VideoState>
           <ThemeState>
-            <VideoCard
-              image={video.url}
-              title={video.title}
-              description={video.description}
-              createdAt={video.publishedAt}
-            />
+            <Authstate>
+              <VideoCard
+                image={video.url}
+                title={video.title}
+                description={video.description}
+                createdAt={video.publishedAt}
+              />
+            </Authstate>
           </ThemeState>
         </VideoState>
       );

@@ -4,28 +4,29 @@ import ThemeContext from '../../context/theme/themeContext';
 import VideoContext from '../../context/video/videoContext';
 import { CardRelated, ImageRelated, RelatedContainer } from './VideoRelated.styled';
 
-const VideoRelated = () => {
+const VideoRelated = ({ data = [] }) => {
   const videoContext = useContext(VideoContext);
-  const { data, selectVideo } = videoContext;
+  const { selectVideo } = videoContext;
 
   const themeContext = useContext(ThemeContext);
   const { theme } = themeContext;
   const history = useHistory();
+  const videos = data && data.items ? data.items : data;
 
   const handleClick = (video) => {
-    selectVideo({
-      title: video.snippet.title,
-      description: video.snippet.description,
-      createdAt: video.snippet.createdAt,
-    });
-    history.push(`/video/${video.id.videoId}`);
+    selectVideo(video);
+
+    history.push(
+      history.location.pathname.includes('video')
+        ? `/video/${video.id.videoId}`
+        : `/favorites/${video.id.videoId}`
+    );
   };
 
   return (
     <RelatedContainer>
-      {data &&
-        data.items &&
-        data.items.map((video) =>
+      {videos &&
+        videos.map((video) =>
           video.snippet ? (
             <CardRelated
               theme={theme}
