@@ -103,10 +103,10 @@ const VideoState = ({ children }) => {
     });
   };
 
-  const removeFromFavorites = (id) => {
+  const removeFromFavorites = (etag) => {
     dispatch({
       type: REMOVE_FROM_FAVORITES,
-      payload: id,
+      payload: etag,
     });
   };
 

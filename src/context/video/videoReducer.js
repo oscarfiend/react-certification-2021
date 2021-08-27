@@ -25,9 +25,7 @@ export default (state = {}, { type, payload }) => {
     case REMOVE_FROM_FAVORITES:
       return {
         ...state,
-        favoriteVideos: state.favoriteVideos.filter(
-          (video) => video.id.videoId !== payload
-        ),
+        favoriteVideos: state.favoriteVideos.filter((video) => video.etag !== payload),
       };
     default:
       return state;

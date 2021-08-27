@@ -24,8 +24,10 @@ const VideoDetail = () => {
   const { id } = useParams();
 
   useEffect(() => {
-    setIsFavoriteVideo(existVideo(id, favoriteVideos));
-  }, [favoriteVideos, id]);
+    if (videoSelected) {
+      setIsFavoriteVideo(existVideo(videoSelected.etag, favoriteVideos));
+    }
+  }, [favoriteVideos, videoSelected]);
 
   return (
     <DetailsContainer>
@@ -46,7 +48,7 @@ const VideoDetail = () => {
               (isFavoriteVideo ? (
                 <AddFavoriteButton
                   type="button"
-                  onClick={() => removeFromFavorites(videoSelected.id.videoId)}
+                  onClick={() => removeFromFavorites(videoSelected.etag)}
                 >
                   Remove from favorites
                 </AddFavoriteButton>

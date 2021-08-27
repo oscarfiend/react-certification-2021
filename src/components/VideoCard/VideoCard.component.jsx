@@ -37,8 +37,8 @@ const VideoCard = (props) => {
   const history = useHistory();
 
   useEffect(() => {
-    setIsFavorite(existVideo(videoId, favoriteVideos));
-  }, [favoriteVideos, videoId]);
+    setIsFavorite(existVideo(video.etag, favoriteVideos));
+  }, [favoriteVideos, video.etag]);
 
   const handleClick = () => {
     selectVideo(video);
@@ -66,7 +66,7 @@ const VideoCard = (props) => {
                   src={remove}
                   primary
                   type="button"
-                  onClick={() => removeFromFavorites(videoId)}
+                  onClick={() => removeFromFavorites(video.etag)}
                   alt="add"
                   aria-hidden="true"
                 />
