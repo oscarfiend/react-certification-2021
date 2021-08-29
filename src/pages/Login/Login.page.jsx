@@ -30,7 +30,7 @@ const LoginPage = ({ setShowLogin, element = 'div', className = 'root-portal' })
     return () => {
       document.body.removeChild(container);
     };
-  }, []);
+  }, [container]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
