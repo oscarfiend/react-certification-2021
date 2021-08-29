@@ -6,5 +6,4 @@ export const ContainerList = styled.div`
   width: 100%;
   flex-wrap: wrap;
   justify-content: center;
-  padding: 0 30px;
 `;

@@ -5,6 +5,7 @@ import { existVideo } from '../../utils/fn';
 import Spinner from '../Spinner';
 import {
   AddFavoriteButton,
+  DescriptionContainer,
   DescriptionDetails,
   DetailsContainer,
   FrameContainer,
@@ -62,12 +63,12 @@ const VideoDetail = () => {
               ))}
           </FrameContainer>
           {videoSelected && (
-            <div>
+            <DescriptionContainer>
               <h3>{videoSelected.snippet.title}</h3>
               <DescriptionDetails>
                 <p>{videoSelected.snippet.description}</p>
               </DescriptionDetails>
-            </div>
+            </DescriptionContainer>
           )}
         </>
       )}

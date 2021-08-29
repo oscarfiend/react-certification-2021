@@ -4,6 +4,7 @@ export const Button = styled.img`
   max-width: 20px;
   height: auto;
   cursor: pointer;
+  display: none;
   &:hover {
     transform: scale(1.3);
   }
@@ -22,6 +23,10 @@ export const Card = styled.div`
   &:hover {
     transform: scale(1.03);
     box-shadow: ${(props) => props.theme.cardShadow};
+
+    & ${Button} {
+      display: inline;
+    }
 
     & > img:first-child {
       display: inline;
@@ -43,10 +48,6 @@ export const Card = styled.div`
     width: 50px;
     height: 50px;
     z-index: 900;
-  }
-
-  @media (max-width: 380px) {
-    width: 95%;
   }
 `;
 

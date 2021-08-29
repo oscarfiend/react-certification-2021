@@ -31,6 +31,10 @@ export const VideoFrame = styled.iframe`
   overflow: auto;
 `;
 
+export const DescriptionContainer = styled.div`
+  padding: 10px;
+`;
+
 export const DescriptionDetails = styled.div`
   overflow: hidden;
   max-height: 90px;
@@ -52,5 +56,9 @@ export const AddFavoriteButton = styled.button`
 
   &:hover {
     background-color: #cccccc;
+  }
+
+  @media (max-width: 600px) {
+    bottom: -10px;
   }
 `;
