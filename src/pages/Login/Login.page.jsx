@@ -6,12 +6,17 @@ import AuthContext from '../../context/auth/authContext';
 import './Login.css';
 import { Modal, ModalShadow } from './Login.styled';
 
-const LoginPage = ({ setShowLogin }) => {
+const LoginPage = ({ setShowLogin, element = 'div', className = 'root-portal' }) => {
   const [user, setUser] = useState({
     email: '',
     password: '',
   });
   const { email, password } = user;
+  const [container] = useState(() => {
+    const el = document.createElement(element);
+    el.classList.add(className);
+    return el;
+  });
 
   const authContext = useContext(AuthContext);
   const { autenticated, signin, authError } = authContext;
@@ -19,6 +24,13 @@ const LoginPage = ({ setShowLogin }) => {
   useEffect(() => {
     if (autenticated) setShowLogin(false);
   }, [autenticated, setShowLogin]);
+
+  useEffect(() => {
+    document.body.appendChild(container);
+    return () => {
+      document.body.removeChild(container);
+    };
+  }, []);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -100,7 +112,7 @@ const LoginPage = ({ setShowLogin }) => {
         </div>
       </Modal>
     </>,
-    document.getElementById('modal') || document.createElement('modal')
+    container
   );
 };
 
