@@ -33,6 +33,8 @@ describe('VideoCard component tests', () => {
                 title={video.title}
                 description={video.description}
                 createdAt={video.publishedAt}
+                video={video}
+                videoId={video.id ? video.id.videoId : video.etag}
               />
             </Authstate>
           </ThemeState>

@@ -1,4 +1,4 @@
-import { fireEvent, render, screen } from '@testing-library/react';
+import { fireEvent, render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
 import { BrowserRouter } from 'react-router-dom';
 import { act } from '@testing-library/react-hooks';
@@ -41,6 +41,15 @@ describe('Header component tests', () => {
   test('Toggle button should be checkbox type', () => {
     const toggle = screen.getByRole('checkbox');
     expect(toggle).toHaveAttribute('type', 'checkbox');
+  });
+
+  test('Login button should show the login view', () => {
+    const avatarButton = screen.queryByTestId(/avatar_login/i);
+    fireEvent.mouseEnter(avatarButton);
+    const option = screen.getByText(/login/i);
+    fireEvent.click(option);
+    const form = screen.findAllByText(/sign In/i);
+    waitFor(() => expect(form).toBeInTheDocument());
   });
 
   test('Toggle button should change the theme', () => {
