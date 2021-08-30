@@ -1,5 +1,6 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { useParams } from 'react-router';
+import AuthContext from '../../context/auth/authContext';
 import VideoContext from '../../context/video/videoContext';
 import { existVideo } from '../../utils/fn';
 import Spinner from '../Spinner';
@@ -13,6 +14,8 @@ import {
 } from './VideoDetail.styled';
 
 const VideoDetail = () => {
+  const authContext = useContext(AuthContext);
+  const { autenticated } = authContext;
   const videoContext = useContext(VideoContext);
   const {
     videoSelected,
@@ -46,6 +49,7 @@ const VideoDetail = () => {
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture"
             />
             {videoSelected &&
+              autenticated &&
               (isFavoriteVideo ? (
                 <AddFavoriteButton
                   type="button"
