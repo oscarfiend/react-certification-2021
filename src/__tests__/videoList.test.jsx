@@ -1,10 +1,11 @@
 import { render, screen, waitFor } from '@testing-library/react';
 import React from 'react';
-import { act } from '@testing-library/react-hooks';
+import { act } from 'react-dom/test-utils';
 import axios from '../config/axios';
 import VideoList from '../components/VideoList';
 import ThemeState from '../context/theme/themeState';
 import VideoState from '../context/video/videoState';
+import Authstate from '../context/auth/authState';
 
 import videosMock from '../mocks/youtube-videos-mock.json';
 
@@ -16,11 +17,13 @@ describe('VideoList component tests', () => {
         data: { ...videosMock },
       })
     );
-    await act(async () => {
+    act(() => {
       render(
         <VideoState>
           <ThemeState>
-            <VideoList />
+            <Authstate>
+              <VideoList videos={videosMock.items} />
+            </Authstate>
           </ThemeState>
         </VideoState>
       );
@@ -33,12 +36,7 @@ describe('VideoList component tests', () => {
     expect(axios).toHaveBeenCalledTimes(1);
   });
 
-  test('shouldn´t containt a card video list', () => {
-    const list = screen.queryAllByTestId(/list_videos/i);
-    expect(list.length).toBe(0);
-  });
-
-  test('should containt a card video list', async () => {
+  test('should containt a card video list', () => {
     const list = screen.findAllByTestId(/list_videos/i);
     waitFor(() => expect(list.length).toBe(videosMock.items.length));
   });

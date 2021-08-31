@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import { createMemoryHistory } from 'history';
 import React from 'react';
-import { Route, Router } from 'react-router-dom';
+import { Router } from 'react-router-dom';
 import ThemeState from '../context/theme/themeState';
 import VideoState from '../context/video/videoState';
 import Authstate from '../context/auth/authState';
