@@ -1,37 +1,21 @@
-import React, { useRef } from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React, { useContext } from 'react';
+import VideoList from '../../components/VideoList/VideoList.component';
+import ThemeContext from '../../context/theme/themeContext';
+import { Title } from './Home.styled';
 
-import { useAuth } from '../../providers/Auth';
 import './Home.styles.css';
 
 function HomePage() {
-  const history = useHistory();
-  const sectionRef = useRef(null);
-  const { authenticated, logout } = useAuth();
-
-  function deAuthenticate(event) {
-    event.preventDefault();
-    logout();
-    history.push('/');
-  }
-
+  const themeContext = useContext(ThemeContext);
+  const { theme } = themeContext;
   return (
-    <section className="homepage" ref={sectionRef}>
-      <h1>Hello stranger!</h1>
-      {authenticated ? (
-        <>
-          <h2>Good to have you back</h2>
-          <span>
-            <Link to="/" onClick={deAuthenticate}>
-              ← logout
-            </Link>
-            <span className="separator" />
-            <Link to="/secret">show me something cool →</Link>
-          </span>
-        </>
-      ) : (
-        <Link to="/login">let me in →</Link>
-      )}
+    <section className="homepage">
+      <Title data-testid="title_home" theme={theme}>
+        <span>WIZE</span>
+        <span>LINE</span>
+        <span> - Youtube challenge!</span>
+      </Title>
+      <VideoList data-testid="video_list" />
     </section>
   );
 }

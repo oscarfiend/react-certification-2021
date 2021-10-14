@@ -1,0 +1,10 @@
+ PASS  src/__tests__/videoCard.js
+ PASS  src/__tests__/home.js
+ PASS  src/__tests__/header.js
+ PASS  src/__tests__/videoList.js
+
+Test Suites: 4 passed, 4 total
+Tests:       15 passed, 15 total
+Snapshots:   0 total
+Time:        6.693s, estimated 17s
+Ran all test suites related to changed files.
